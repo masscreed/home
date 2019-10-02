@@ -1,0 +1,24 @@
+//////////////// 1
+(defun duplicate (x)  ;; рекурсивный вариант
+   (cond ((null x) nil)
+         (t (cons (car x) (cons (car x) (duplicate (cdr x))))))
+)
+ 
+(duplicate '(1 a b 3))
+ 
+
+
+
+
+///////////////// 3
+(defun drop-index (w v)
+  (drop w (sort (copy-list v) #'<))
+)
+ 
+(defun drop (w v &optional (n 1))
+  (cond ((or (null w) (null v)) w)
+        ((= (car v) n) (drop (cdr w) (cdr v) (1+ n)))
+        ((cons (car w) (drop (cdr w) v (1+ n)))))
+)
+ 
+(drop-index '(a s d f g h j k l) '(1 4 5 8))
